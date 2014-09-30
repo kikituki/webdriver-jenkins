@@ -1,10 +1,12 @@
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
@@ -20,7 +22,11 @@ public class SampleTest {
     @Before
     public void setUp() {
         // WebDriverのインスタンスを生成しブラウザを起動
-        driver = new FirefoxDriver();
+        //driver = new FirefoxDriver();
+        FirefoxBinary binary = new FirefoxBinary(new File("/usr/lib64/firefox"));
+        binary.setEnvironmentProperty("DISPLAY",System.getProperty("lmportal.xvfb.id",":99"));
+        driver = new FirefoxDriver(binary,null);
+        
         // 暗黙の待ち時間を設定（これをしないとページがロードする前に処理が進みエラーとなってしまう）
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }

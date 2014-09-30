@@ -23,7 +23,7 @@ public class SampleTest {
     public void setUp() {
         // WebDriverのインスタンスを生成しブラウザを起動
         //driver = new FirefoxDriver();
-        FirefoxBinary binary = new FirefoxBinary(new File("/usr/lib64/firefox"));
+        FirefoxBinary binary = new FirefoxBinary(new File("/usr/bin/firefox"));
         binary.setEnvironmentProperty("DISPLAY",System.getProperty("lmportal.xvfb.id",":99"));
         driver = new FirefoxDriver(binary,null);
         
